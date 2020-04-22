@@ -1,6 +1,6 @@
 # myproject
 
-> A Vue.js project
+> moj projekat
 
 ## Build Setup
 

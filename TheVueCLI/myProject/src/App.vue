@@ -1,60 +1,60 @@
 <template>
+
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1>{{ title }}</h1>
+      <Navbar></Navbar>
+      <allFriends :friends="friends" @delete="deleteFriend"></allFriends>
+      <onlineFriends :friends="friends"></onlineFriends>
   </div>
+
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+
+  import Navbar from './Navbar'
+  import allFriends from './AllFriends'
+  import onlineFriends from './OnlineFriends'
+
+  export default {
+    name: 'app',
+    components:{
+      Navbar,
+      allFriends,
+      onlineFriends
+    },
+    data () {
+      return {
+        title: 'my first vue app, woo :)',
+        friends: [
+                { name: 'Mario', online: true },
+                { name: 'Luigi', online: false },
+                { name: 'Toad', online: true },
+                { name: 'Bower', online: false },
+        ]
+      }
+    },
+    methods:{
+      //      parametar koji nam salje emit
+      deleteFriend(payload) {
+        console.log(payload)
+      }
     }
   }
-}
+
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 
-h1, h2 {
-  font-weight: normal;
-}
+  h1 {
+    color: 444;
+    font-weight: normal;
+    text-align: center;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  span {
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+    border: 1px dashed black;
+    
+  }
 
-a {
-  color: #42b983;
-}
 </style>
